@@ -1,0 +1,7 @@
+{
+  "name": "limity",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
