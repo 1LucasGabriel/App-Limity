@@ -1,0 +1,58 @@
+<ion-content class="ion-padding">
+  <div class="home-container">
+    <h1>Derivada</h1>
+
+    <ion-card>
+      <ion-card-content>
+        <p>A derivada mede a taxa de variação instantânea de uma função. É como descobrir a inclinação da curva em um ponto.</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <h4>Insira os dados para calcularmos a derivada:</h4>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item lines="none" class="ion-no-padding">
+          <ion-list>
+            <p>Função f(x)</p>
+            <ion-input fill="outline" placeholder="Digite a função aqui..." [(ngModel)]="funcao"></ion-input>
+          </ion-list>
+        </ion-item>
+
+        <ion-item lines="none" class="ion-no-padding" *ngIf="resultado">
+          <p><strong>Resultado:</strong> {{resultado}}</p>
+        </ion-item>
+
+        <ion-button expand="block" (click)="calcularDerivada()">Calcular</ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="resultado">
+      <ion-card-header>
+        <h4>Gráfico da derivada f'(x)</h4>
+      </ion-card-header>
+
+      <ion-card-content>
+        <canvas id="graficoFuncao" style="width: 100%; height: 300px;"></canvas>
+        <p style="font-size: 0.9rem; text-align: center; margin-top: 8px;">
+          O gráfico mostra como a derivada se comporta conforme o valor de <em>x</em> varia.
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-toast
+    [isOpen]="isToastOpen"
+    message="{{mensagem}}"
+    color="danger"
+    position="top"
+    [duration]="3000"
+    (didDismiss)="setOpen(false)">
+  </ion-toast>
+
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+</ion-content>

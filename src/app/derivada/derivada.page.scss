@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Protest+Strike&display=swap');
+
+
+div {
+  h1 {
+    margin: 5%; 
+    font-family: 'Protest Strike';
+    font-size: 40px;
+    color: rgb(50, 112, 247);
+  }
+
+  ion-card {
+    font-family: 'Poppins';
+    border-radius: 10px;
+
+    p {
+      font-size: 17px;
+      font-family: 'Poppins';
+      color: black;
+    }
+
+    p.margin {
+      margin: auto;
+    }
+
+    h4 {
+      color: black;
+    }
+
+    ion-item.ion-no-padding {
+      --inner-padding-end: 0px !important;
+    }
+
+    ion-input {
+      margin: 0 0 20px 0;
+      font-family: 'Poppins';
+      --border-radius: 10px !important;
+      color: black;
+    }
+
+    ion-button {
+      font-family: 'Poppins';
+      color: white;
+      --background: rgb(50, 112, 247);
+      --border-radius: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+  }
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+ion-card {
+  border-radius: 16px;
+}
+
+canvas {
+  margin-top: 10px;
+}
