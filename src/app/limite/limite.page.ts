@@ -18,25 +18,26 @@ export class LimitePage implements OnInit {
   public funcao: string = '';
   public pontoX: number | null = null;
   public resultado: number | null = null;
-  public isToastOpen = false;
-  public mensagem: string = '';
-  public chart: any;
-  public historico: any[] = [];
+
+  public abrirToast = false;
+  public mensagemToast: string = '';
+  public grafico: any;
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   public calcularLimite() {
     if (this.funcao.trim() === '') {
-      this.mensagem = "Digite a função antes de calcular!";
-      this.setOpen(true);
+      this.mensagemToast = "Digite a função antes de calcular!";
+      this.exibirErro(true);
       return;
     }
 
     if (this.pontoX == null) {
-      this.mensagem = "Digite o X antes de calcular!";
-      this.setOpen(true);
+      this.mensagemToast = "Digite o X antes de calcular!";
+      this.exibirErro(true);
       return;
     }
 
@@ -50,20 +51,20 @@ export class LimitePage implements OnInit {
       });
     } 
     catch {
-      this.mensagem = "Erro ao calcular. Tente novamente!";
-      this.setOpen(true);
+      this.mensagemToast = "Erro ao calcular. Tente novamente!";
+      this.exibirErro(true);
     }
   }
 
-  public setOpen(isOpen: boolean) {
-    this.isToastOpen = isOpen;
+  public exibirErro(mensagemAberta: boolean) {
+    this.abrirToast = mensagemAberta;
   }
 
   private criarGrafico() {
-    const ctx = document.getElementById('graficoLimite') as HTMLCanvasElement;
+    const novoGrafico = document.getElementById('graficoLimite') as HTMLCanvasElement;
 
-    if (this.chart) {
-      this.chart.destroy();
+    if (this.grafico) {
+      this.grafico.destroy();
     }
 
     const xs: number[] = [];
@@ -79,13 +80,14 @@ export class LimitePage implements OnInit {
         const y = evaluate(expressao);
         xs.push(Number(i.toFixed(2)));
         ys.push(y);
-      } catch {
+      } 
+      catch {
         xs.push(i);
         ys.push(NaN);
       }
     }
 
-    this.chart = new Chart(ctx, {
+    this.grafico = new Chart(novoGrafico, {
       type: 'line',
       data: {
         labels: xs,

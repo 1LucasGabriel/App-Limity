@@ -51,12 +51,12 @@
   </div>
 
   <ion-toast
-    [isOpen]="isToastOpen"
-    message="{{mensagem}}"
+    [isOpen]="abrirToast"
+    message="{{mensagemToast}}"
     [color]="'danger'"
     position="top"
     [duration]="5000"
-    (didDismiss)="setOpen(false)">
+    (didDismiss)="exibirErro(false)">
   </ion-toast>
 
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">

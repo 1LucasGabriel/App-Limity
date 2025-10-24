@@ -17,9 +17,9 @@ export class DerivadaPage implements OnInit {
 
   public funcao: any = '';
   public resultado: any = null;
-  public isToastOpen = false;
-  public mensagem: string = '';
-  public chart: any;
+  public abrirToast = false;
+  public mensagemToast: string = '';
+  public grafico: any;
 
   constructor() { }
 
@@ -32,8 +32,8 @@ export class DerivadaPage implements OnInit {
 
   public calcularDerivada() {
     if (this.funcao == '') {
-      this.mensagem = "Digite a função antes de calcular!";
-      this.setOpen(true);
+      this.mensagemToast = "Digite a função antes de calcular!";
+      this.exibirErro(true);
       return;
     }
 
@@ -56,23 +56,23 @@ export class DerivadaPage implements OnInit {
       });
     } 
     catch {
-      this.mensagem = "Erro ao calcular. Tente novamente!";
-      this.setOpen(true);
+      this.mensagemToast = "Erro ao calcular. Tente novamente!";
+      this.exibirErro(true);
     }
   }
 
-  public setOpen(isOpen: boolean) {
-    this.isToastOpen = isOpen;
+  public exibirErro(mensagemAberta: boolean) {
+    this.abrirToast = mensagemAberta;
   }
 
   public criarGrafico(xs: number[], ys: number[]) {
-    const ctx = document.getElementById('graficoFuncao') as HTMLCanvasElement;
+    const novoGrafico = document.getElementById('graficoFuncao') as HTMLCanvasElement;
 
-    if (this.chart) {
-      this.chart.destroy(); 
+    if (this.grafico) {
+      this.grafico.destroy(); 
     }
 
-    this.chart = new Chart(ctx, {
+    this.grafico = new Chart(novoGrafico, {
       type: 'line',
       data: {
         labels: xs,
